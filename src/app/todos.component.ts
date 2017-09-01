@@ -19,7 +19,8 @@ import { Component } from '@angular/core';
 
 	  	</li>
   	</ul>
- 
+  	<button class="btn btn-default" (click)="resetTodos()">Reset</button>
+  
   `,
 })
 export class TodosComponent  { 
@@ -47,4 +48,9 @@ export class TodosComponent  {
 		this.todos.splice(this.todos.indexOf(todo, 1))
 	}
 
+	resetTodos(){
+		this.todos.length = 0;
+		this.successMsg = 'Todos Cleared';
+		this.newtodo = '';
+	}
 }
