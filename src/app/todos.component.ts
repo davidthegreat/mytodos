@@ -15,10 +15,11 @@ import { Component } from '@angular/core';
   	</div>
   	<ul class="list-group">
 	  	<li *ngFor="let todo of todos" class="list-group-item">
-	  		{{todo}}
+	  		<a href="#" (click)="removeTodo(todo)">{{todo}}</a>
+
 	  	</li>
   	</ul>
-  	
+ 
   `,
 })
 export class TodosComponent  { 
@@ -42,5 +43,8 @@ export class TodosComponent  {
 		}
 	}
 
+	removeTodo(todo){
+		this.todos.splice(this.todos.indexOf(todo, 1))
+	}
 
 }
