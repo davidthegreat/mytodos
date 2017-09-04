@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { TodoService } from '../../services/todo.service'
+
+
 @Component({
   selector: 'todos',
   template: `
@@ -22,15 +25,16 @@ import { Component } from '@angular/core';
   	<button class="btn btn-default" (click)="resetTodos()">Reset</button>
   
   `,
+  providers: [TodoService]
 })
 export class TodosComponent  { 
-	todo;
-	newTodo;
-	errorMsg;
-	successMsg;
+    todos:any;
+	newTodo:any;
+	errorMsg:string;
+	successMsg:string;
 
-	constructor(){
-		this.todos = ['Wash Dishes', 'Pickup Kids', 'Sleep'];
+	constructor(private todoService: TodoService){
+		this.todos = todoService.getTodos();
 	}
 
 	addTodo(){
@@ -44,9 +48,9 @@ export class TodosComponent  {
 		}
 	}
 
-	removeTodo(todo){
-		this.todos.splice(this.todos.indexOf(todo, 1))
-	}
+	  removeTodo(todos){
+   		this.todoService.removeTodo(todos);
+    }
 
 	resetTodos(){
 		this.todos.length = 0;
